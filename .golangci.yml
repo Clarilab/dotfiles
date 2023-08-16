@@ -24,16 +24,16 @@ linters:
     - sqlclosecheck # disabled because of generics
     - tagliatelle # nervt hart rum z.B. ID statt Id in jsonTags, was bei alten structs kacke ist.
     - varcheck  # deprecated
-​
+
 linters-settings:
   cyclop:
     max-complexity: 20
     package-average: 10.0
     skip-tests: true
-​
+
   dupl:
     threshold: 250
-​
+  
   errcheck:
     # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
     # Such cases aren't reported by default.
@@ -43,36 +43,36 @@ linters-settings:
     # Such cases aren't reported by default.
     # Default: false
     check-blank: true
-​
+
   errchkjson:
     report-no-exported: true
-​
+
   exhaustive:
     default-signifies-exhaustive: true
-​
+
   forbidigo:
     forbid:
       - ^(fmt\.Print(|f|ln)|print|println)$
       - 'http\.Default(Client|Transport)'
-​
+
   funlen:
     lines: 100 # default 60
     statements: 40
-​
+
   gocognit:
     min-complexity: 20
-​
+
   goconst:
     min-occurences: 3
-​
+
   gocyclo:
     min-complexity: 20
-​
+
   godot:
     exclude:
       - "^fixme:"
       - "^todo:"
-​
+
   gofmt:
     rewrite-rules:
       - pattern: 'interface{}'
@@ -81,7 +81,7 @@ linters-settings:
         replacement: 'a[b:]'
       - pattern: 'a[0:b]'
         replacement: 'a[:b]'
-​
+
   gomnd:
     # List of function patterns to exclude from analysis.
     # Values always ignored: `time.Date`,
@@ -97,7 +97,7 @@ linters-settings:
       - prometheus.ExponentialBuckets
       - prometheus.ExponentialBucketsRange
       - prometheus.LinearBuckets
-​
+
   gomodguard:
     blocked:
       modules:
@@ -138,32 +138,32 @@ linters-settings:
         - github.com/savsgio/atreugo/v11:
             version: ">11.9.9"
             reason: "introduced breaking changes"
-​
+
   govet:
     enable-all: true
     disable: # those are pretty noisy for no real benefit
       - shadow
       - fieldalignment
       - loopclosure
-​
+
   grouper:
     import-require-single-import: true
     import-require-grouping: true
-​
+
   lll:
     line-length: 160
-​
+
   nolintlint:
     allow-no-explanation: [ funlen, lll ]
     require-explanation: true
     require-specific: true
-​
+
   nonamedreturns:
     report-error-in-defer: true
   
   predeclared:
     q: true
-​
+
   revive:
     enable-all-rules: true
     rules:
@@ -204,7 +204,7 @@ linters-settings:
         disabled: true
       - name: package-comments
         disabled: true
-​
+
   stylecheck:
     checks:
       - all
@@ -212,14 +212,14 @@ linters-settings:
       - -ST1020
       - -ST1021
       - -ST1022
-​
+
   tagalign:
     align: false
     order:
       - json
       - bson
       - validate
-​
+
   varnamelen:
     min-name-length: 2
     ignore-names:
@@ -231,17 +231,17 @@ linters-settings:
       - t testing.T
       - T any
       - m map[string]int
-​
+
   wrapcheck:
     # An array of strings that specify globs of packages to ignore.
     # Default: []
     ignorePackageGlobs:
       - github.com/savsgio/atreugo/*
-​
+
   wsl:
     # Allow declarations (var) to be cuddled.
     allow-cuddle-declarations: true
-​
+
 issues:
   # Maximum issues count per one linter. Set to 0 to disable. Default is 50.
   max-issues-per-linter: 0
@@ -274,17 +274,17 @@ issues:
         - gosec
         - noctx
         - wrapcheck
-​
+
 output:
   sort-results: true
-​
+
 run:
   skip-dirs:
     - cmd
     - config
   # tests: false
   timeout: 3m
-​
+
 severity:
   default-severity: warning
   rules:
