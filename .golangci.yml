@@ -8,7 +8,7 @@ linters:
     - exhaustruct # very annoying, checks if all struct fields are filled
     - exhaustivestruct # deprecated, same as exhaustruct
     - ginkgolinter # not used libs
-    - godot # nervig für quasi keinen impact
+    - godot # very noisy, don't see the need
     - gofumpt # we don't use gofumpt
     - goheader # unused
     - golint # deprecated, replaced by revive
@@ -22,8 +22,9 @@ linters:
     - scopelint # deprecated
     - structcheck # deprecated & disabled because of generics
     - sqlclosecheck # disabled because of generics
-    - tagliatelle # nervt hart rum z.B. ID statt Id in jsonTags, was bei alten structs kacke ist.
-    - varcheck  # deprecated
+    - tagliatelle # no need
+    - tparallel # does the same as paralleltest
+    - varcheck # deprecated
 
 linters-settings:
   cyclop:
@@ -33,7 +34,7 @@ linters-settings:
 
   dupl:
     threshold: 250
-  
+
   errcheck:
     # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
     # Such cases aren't reported by default.
@@ -75,12 +76,12 @@ linters-settings:
 
   gofmt:
     rewrite-rules:
-      - pattern: 'interface{}'
-        replacement: 'any'
-      - pattern: 'a[b:len(a)]'
-        replacement: 'a[b:]'
-      - pattern: 'a[0:b]'
-        replacement: 'a[:b]'
+      - pattern: "interface{}"
+        replacement: "any"
+      - pattern: "a[b:len(a)]"
+        replacement: "a[b:]"
+      - pattern: "a[0:b]"
+        replacement: "a[:b]"
 
   gomnd:
     # List of function patterns to exclude from analysis.
@@ -148,19 +149,21 @@ linters-settings:
 
   grouper:
     import-require-single-import: true
-    import-require-grouping: true
 
   lll:
     line-length: 160
 
   nolintlint:
-    allow-no-explanation: [ funlen, lll ]
+    allow-no-explanation: [funlen, lll]
     require-explanation: true
     require-specific: true
 
   nonamedreturns:
     report-error-in-defer: true
-  
+
+  paralleltest:
+    ignore-missing: true # with this setting it will only point out incorrect usage of t.Parallel()
+
   predeclared:
     q: true
 
@@ -204,6 +207,10 @@ linters-settings:
         disabled: true
       - name: package-comments
         disabled: true
+      - name: unhandled-error
+        disabled: true
+      - name: unused-receiver
+        disabled: true
 
   stylecheck:
     checks:
@@ -243,19 +250,23 @@ linters-settings:
     allow-cuddle-declarations: true
 
 issues:
+  fix: true
   # Maximum issues count per one linter. Set to 0 to disable. Default is 50.
   max-issues-per-linter: 0
   # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
   max-same-issues: 0
+  exclude:
+    - "**/*.json"
+    - "**/*.xml"
   exclude-rules:
     - source: "^//\\s*go:generate\\s"
-      linters: 
+      linters:
         - lll
     - source: "(noinspection|TODO)"
-      linters: 
+      linters:
         - godot
     - source: "//noinspection"
-      linters: 
+      linters:
         - gocritic
     - source: "jsoniter"
       linters:
@@ -263,6 +274,7 @@ issues:
     - path: "_test\\.go"
       linters:
         - bodyclose
+        - gochecknoglobals
         - containedctx
         - cyclop
         - dupl
@@ -273,6 +285,7 @@ issues:
         - gomnd
         - gosec
         - noctx
+        - varnamelen
         - wrapcheck
 
 output:
