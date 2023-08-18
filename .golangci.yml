@@ -9,7 +9,6 @@ linters:
     - exhaustivestruct # deprecated, same as exhaustruct
     - ginkgolinter # not used libs
     - godot # very noisy, don't see the need
-#    - gofumpt # we don't use gofumpt
     - goheader # unused
     - golint # deprecated, replaced by revive
     - ifshort # deprecated
