@@ -261,6 +261,15 @@ issues:
   exclude-rules:
     - source: "^//\\s*go:generate\\s"
       linters:
+        # restrict autofix linters on generated files
+        - dupword
+        - godot
+        - gofmt
+        - gofumpt
+        - goimports
+        - misspell
+        - tagalign
+        - whitespace
         - lll
     - source: "(noinspection|TODO)"
       linters:
