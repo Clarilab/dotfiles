@@ -9,7 +9,7 @@ linters:
     - exhaustivestruct # deprecated, same as exhaustruct
     - ginkgolinter # not used libs
     - godot # very noisy, don't see the need
-    - gofumpt # we don't use gofumpt
+#    - gofumpt # we don't use gofumpt
     - goheader # unused
     - golint # deprecated, replaced by revive
     - ifshort # deprecated
@@ -75,6 +75,7 @@ linters-settings:
       - "^todo:"
 
   gofmt:
+    simplify: false # we use gofumpt for simplification
     rewrite-rules:
       - pattern: "interface{}"
         replacement: "any"
@@ -82,6 +83,9 @@ linters-settings:
         replacement: "a[b:]"
       - pattern: "a[0:b]"
         replacement: "a[:b]"
+
+  gofumpt:
+    extra-rules: true
 
   gomnd:
     # List of function patterns to exclude from analysis.
@@ -255,9 +259,6 @@ issues:
   max-issues-per-linter: 0
   # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
   max-same-issues: 0
-  exclude:
-    - "**/*.json"
-    - "**/*.xml"
   exclude-rules:
     - source: "^//\\s*go:generate\\s"
       linters:
@@ -279,11 +280,13 @@ issues:
         - cyclop
         - dupl
         - errcheck
+        - forbidigo
         - funlen
         - goconst
         - gocyclo
         - gomnd
         - gosec
+        - nlreturn
         - noctx
         - varnamelen
         - wrapcheck
