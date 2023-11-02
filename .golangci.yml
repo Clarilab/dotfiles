@@ -11,6 +11,7 @@ linters:
     - godot # very noisy, don't see the need
     - goheader # unused
     - golint # deprecated, replaced by revive
+    - gosmopolitan # unnecessary i18n linter
     - ifshort # deprecated
     - interfacer # deprecated
     - lll # should be disabled in CI, as this is a cosmetic only and is really shitty on struct fields
