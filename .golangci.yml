@@ -316,7 +316,6 @@ severity:
         - gocheckcompilerdirectives
         - gochecknoinits
         - goerr113
-        - gosmopolitan
         - ineffassign
         - loggercheck
         - makezero
