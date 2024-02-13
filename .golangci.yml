@@ -16,6 +16,7 @@ linters:
     - interfacer # deprecated
     - lll # should be disabled in CI, as this is a cosmetic only and is really shitty on struct fields
     - maligned # deprecated
+    - misspell # will sometimes wrongly correct german strings ("Identifikation" -> "Identification", or "Nationalität" -> "Nationalistät", wtf)
     - nakedret # no need
     - nosnakecase # deprecated
     - rowserrcheck # disabled because sql
