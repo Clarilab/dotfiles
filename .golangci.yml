@@ -2,30 +2,22 @@ linters:
   enable-all: true
   disable:
     - contextcheck # Check whether the function uses a non-inherited context aka context.Background()
-    - deadcode # deprecated, replaced by unused
     - depguard # not needed, does the same as gomodguard
     - execinquery # sql linter, no need
     - exhaustruct # very annoying, checks if all struct fields are filled
-    - exhaustivestruct # deprecated, same as exhaustruct
+    - exportloopref # deprecated
     - ginkgolinter # not used libs
     - godot # very noisy, don't see the need
     - goheader # unused
-    - golint # deprecated, replaced by revive
+    - gomnd # deprecated
     - gosmopolitan # unnecessary i18n linter
-    - ifshort # deprecated
-    - interfacer # deprecated
     - lll # should be disabled in CI, as this is a cosmetic only and is really shitty on struct fields
-    - maligned # deprecated
     - misspell # will sometimes wrongly correct german strings ("Identifikation" -> "Identification", or "Nationalität" -> "Nationalistät", wtf)
     - nakedret # no need
-    - nosnakecase # deprecated
     - rowserrcheck # disabled because sql
-    - scopelint # deprecated
-    - structcheck # deprecated & disabled because of generics
     - sqlclosecheck # disabled because of generics
     - tagliatelle # no need
     - tparallel # does the same as paralleltest
-    - varcheck # deprecated
 
 linters-settings:
   cyclop:
@@ -88,7 +80,7 @@ linters-settings:
   gofumpt:
     extra-rules: true
 
-  gomnd:
+  mnd:
     # List of function patterns to exclude from analysis.
     # Values always ignored: `time.Date`,
     # `strconv.FormatInt`, `strconv.FormatUint`, `strconv.FormatFloat`,
@@ -252,6 +244,9 @@ issues:
   max-issues-per-linter: 0
   # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
   max-same-issues: 0
+  exclude-dirs:
+    - cmd
+    - config
   exclude-rules:
     - source: "^//\\s*go:generate\\s"
       linters:
@@ -297,9 +292,6 @@ output:
   sort-results: true
 
 run:
-  skip-dirs:
-    - cmd
-    - config
   # tests: false
   timeout: 3m
 
@@ -313,7 +305,7 @@ severity:
         - durationcheck
         - errchkjson
         - errorlint
-        - exportloopref
+        - copyloopvar
         - gocheckcompilerdirectives
         - gochecknoinits
         - goerr113
