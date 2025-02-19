@@ -57,7 +57,7 @@ linters-settings:
     min-complexity: 20
 
   goconst:
-    min-occurences: 3
+    min-occurrences: 3 # default 3
 
   gocyclo:
     min-complexity: 20
@@ -124,7 +124,7 @@ linters-settings:
         #     recommendations:
         #       - stdlib
         #     reason: 'standard lib provides this functionality, aka fmt.Errorf(...)'
-      version:
+      versions:
         - github.com/savsgio/atreugo/v11:
             version: ">11.9.9"
             reason: "introduced breaking changes"
