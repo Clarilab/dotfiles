@@ -3,13 +3,10 @@ linters:
   disable:
     - contextcheck # Check whether the function uses a non-inherited context aka context.Background()
     - depguard # not needed, does the same as gomodguard
-    - execinquery # sql linter, no need
     - exhaustruct # very annoying, checks if all struct fields are filled
-    - exportloopref # deprecated
     - ginkgolinter # not used libs
     - godot # very noisy, don't see the need
     - goheader # unused
-    - gomnd # deprecated
     - gosmopolitan # unnecessary i18n linter
     - lll # should be disabled in CI, as this is a cosmetic only and is really shitty on struct fields
     - misspell # will sometimes wrongly correct german strings ("Identifikation" -> "Identification", or "Nationalität" -> "Nationalistät", wtf)
@@ -17,6 +14,7 @@ linters:
     - rowserrcheck # disabled because sql
     - sqlclosecheck # disabled because of generics
     - tagliatelle # no need
+    - tenv # deprecated and automatically replaced by usetesting
     - tparallel # does the same as paralleltest
 
 linters-settings:
