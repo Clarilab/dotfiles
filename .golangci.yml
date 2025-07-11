@@ -4,6 +4,7 @@ linters:
   disable:
     - contextcheck
     - depguard
+    - embeddedstructfieldcheck
     - exhaustruct
     - ginkgolinter
     - godot
