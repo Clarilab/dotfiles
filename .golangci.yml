@@ -4,6 +4,7 @@ linters:
   disable:
     - contextcheck
     - depguard
+    - dupword
     - embeddedstructfieldcheck
     - exhaustruct
     - ginkgolinter
@@ -50,8 +51,8 @@ linters:
       min-complexity: 20
     godot:
       exclude:
-        - '^fixme:'
-        - '^todo:'
+        - "^fixme:"
+        - "^todo:"
     gomodguard:
       blocked:
         modules:
@@ -77,7 +78,7 @@ linters:
               reason: we want to update this dependency
         versions:
           - github.com/savsgio/atreugo/v11:
-              version: '>11.9.9'
+              version: ">11.9.9"
               reason: introduced breaking changes
     govet:
       disable:
