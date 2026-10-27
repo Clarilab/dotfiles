@@ -148,6 +148,8 @@ linters:
           disabled: true
         - name: modifies-parameter
           disabled: true
+        - name: multiline-if-init
+          disabled: true
         - name: nested-structs
           disabled: true
         - name: package-comments
